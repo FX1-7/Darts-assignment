@@ -4,6 +4,8 @@
 class Player
 {
 public:
+	Player();
+	~Player();
 	int getScore();
 	int getSuccessRate();
 	void setScore(int);

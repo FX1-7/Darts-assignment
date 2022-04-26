@@ -35,8 +35,12 @@ void GameCreation::Simulation(Player& player1, Player& player2, int sims) {
 			std::cout << "It is " << player1.getName() << "'s turn to throw!" << std::endl;
 			std::cout << "Please enter what " << player1.getName() << " is throwing at: " << std::endl;
 			std::cin >> TempTarget;
+			while (TempTarget > 20 && TempTarget != 25) {
+				std::cout << "Please enter a value 20 or less, or 25 if you wish to aim for the bull!" << std::endl;
+				std::cin >> TempTarget;
+			}
 			FinalHit = Throws.throw_single(TempTarget, player1.getSuccessRate());
-			if (FinalHit = 25) {
+			if (FinalHit == 25) {
 				std::cout << player1.getName() << " has hit the bullseye!" << std::endl;
 				player1.setScore(player1.getScore() - FinalHit);
 				std::cout << player1.getName() << "'s score is now: " << player1.getScore() << std::endl;
@@ -49,8 +53,12 @@ void GameCreation::Simulation(Player& player1, Player& player2, int sims) {
 			std::cout << "It is " << player2.getName() << "'s turn to throw!" << std::endl;
 			std::cout << "Please enter what " << player2.getName() << " is throwing at: " << std::endl;
 			std::cin >> TempTarget;
+			while (TempTarget > 20 && TempTarget != 25) {
+				std::cout << "Please enter a value 20 or less, or 25 if you wish to aim for the bull!" << std::endl;
+				std::cin >> TempTarget;
+			}
 			FinalHit = Throws.throw_single(TempTarget, player2.getSuccessRate());
-			if (FinalHit = 25) {
+			if (FinalHit == 25) {
 				std::cout << player2.getName() << " has hit the bullseye!" << std::endl;
 				player2.setScore(player2.getScore() - FinalHit);
 				std::cout << player2.getName() << "'s score is now: " << player2.getScore() << std::endl;

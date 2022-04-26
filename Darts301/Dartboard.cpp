@@ -17,7 +17,7 @@ int Dartboard::throw_single(int d, int p) {
 			return rand() % 20 + 1;
 	}
 	else			// we must be aiming for 1 to 20 single
-		if (r <= 88)
+		if (r <= p)
 			return d;
 		else if (r <= 92)
 			return bd[0][d];
