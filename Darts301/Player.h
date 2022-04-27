@@ -11,8 +11,8 @@ public:
 	void setScore(int);
 	void setSuccessRate(int);
 	int getTurns();
-	int setTurns(int);
-	int setWins(int);
+	void setTurns(int);
+	void setWins(int);
 	int getWins();
 	std::string getName();
 	void setName(std::string);

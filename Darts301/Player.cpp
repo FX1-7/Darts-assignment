@@ -4,6 +4,8 @@
 
 Player::Player() {
 	score = 301;
+	turns = 0;
+	wins = 0;
 }
 
 int Player::getScore() {
@@ -33,13 +35,16 @@ void Player::setSuccessRate(int tScr) {
 int Player::getTurns() {
 	return Player::turns;
 }
-
-int Player::setTurns(int tTrns) {
+void Player::setTurns(int tTrns) {
 	turns = tTrns;
 }
 
-int Player::setWins(int tWins) {
+void Player::setWins(int tWins) {
 	wins = tWins;
+}
+
+int Player::getWins() {
+	return Player::wins;
 }
 
 Player::~Player() {
