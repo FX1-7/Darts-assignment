@@ -26,7 +26,8 @@ int Dartboard::Throw(int p) {
 		}
 		else if (r <= 92)
 			return bd[0][h];
-		else if (r <= 96)
+		else {
 			return bd[1][h];
+		}
 	}
 }
