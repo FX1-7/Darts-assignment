@@ -26,8 +26,20 @@ void Player::setScore(int tScore) {
 	score = tScore;
 }
 
-void Player::setSuccessRate(int tscr) {
-	SuccessRate = tscr;
+void Player::setSuccessRate(int tScr) {
+	SuccessRate = tScr;
+}
+
+int Player::getTurns() {
+	return Player::turns;
+}
+
+int Player::setTurns(int tTrns) {
+	turns = tTrns;
+}
+
+int Player::setWins(int tWins) {
+	wins = tWins;
 }
 
 Player::~Player() {

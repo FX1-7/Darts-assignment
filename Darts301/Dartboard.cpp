@@ -19,12 +19,8 @@ int Dartboard::throw_single(int d, int p) {
 	else			// we must be aiming for 1 to 20 single
 		if (r <= p)
 			return d;
-		else if (r <= 92)
+		else if (r <= 92) // If missed, then it has a 1 in 4 chance of hitting the left neighbour
 			return bd[0][d];
-		else if (r <= 96)
+		else if (r <= 96) // If missed, then it has a 1 in 4 chance of hitting the right neighbour
 			return bd[1][d];
-		else if (r <= 98)
-			return 3 * d;
-		else
-			return 2 * d;
 }
