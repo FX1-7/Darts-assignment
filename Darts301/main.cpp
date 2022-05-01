@@ -16,8 +16,18 @@ int main() {
 	Player player2;
 	GameCreation Game;
 	int sims;
+	int TempMenuVar;
 	Game.CreateGame(player1, player2);
 	std::cout << "Please enter how many games you'd like to simulate" << std::endl;
 	std::cin >> sims;
-	Game.Simulation(player1, player2, sims);
+	std::cout << "Please enter who is going first." << std::endl << "1. Player 1" << std::endl << "2. Player 2" << std::endl;
+	std::cin >> TempMenuVar;
+	do {
+		if (TempMenuVar == 1) {
+			Game.Simulation301P1(player1, player2, sims);
+		}
+		else if (TempMenuVar == 2) {
+			Game.Simulation301P2(player1, player2, sims);
+		}
+	} while (TempMenuVar != 1 || TempMenuVar != 2);
 }
