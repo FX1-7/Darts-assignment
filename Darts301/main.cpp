@@ -23,10 +23,10 @@ int main() {
 	std::cout << "Please enter who is going first." << std::endl << "1. Player 1" << std::endl << "2. Player 2" << std::endl;
 	std::cin >> TempMenuVar;
 	do {
-		if (TempMenuVar != 1 || TempMenuVar != 2) {
+		if (TempMenuVar != 1 && TempMenuVar != 2) {
 			std::cout << "Please enter a value of 1 or 2." << std::endl;
 			std::cin >> TempMenuVar;
 		}
-	} while (TempMenuVar != 1 || TempMenuVar != 2);
+	} while (TempMenuVar != 1 && TempMenuVar != 2);
 	Game.Simulation301(player1, player2, sims, TempMenuVar);
 }

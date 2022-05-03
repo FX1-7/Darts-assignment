@@ -64,6 +64,9 @@ void GameCreation::Simulation301(Player& player1, Player& player2, int sims, int
 					std::cout << player1.getName() << "'s score is now: " << player1.getScore() << std::endl;
 					player1.setTurns(player1.getTurns() + 1);
 				}
+				else if (player1.getScore() == 0) {
+					continue;
+				}
 				else {
 					std::cout << player1.getName() << " has hit " << FinalHit << "!" << std::endl;
 					player1.setScore(player1.getScore() - FinalHit);
@@ -100,6 +103,9 @@ void GameCreation::Simulation301(Player& player1, Player& player2, int sims, int
 					std::cout << player2.getName() << " has hit " << FinalHit << " However this would bring their score below 50 so they must aim for another area!" << std::endl;
 					std::cout << player2.getName() << "'s score is now: " << player2.getScore() << std::endl;
 					player2.setTurns(player1.getTurns() + 1);
+				}
+				else if (player2.getScore() == 0) {
+					continue;
 				}
 				else {
 					std::cout << player2.getName() << " has hit " << FinalHit << "!" << std::endl;
@@ -141,6 +147,9 @@ void GameCreation::Simulation301(Player& player1, Player& player2, int sims, int
 					std::cout << player2.getName() << "'s score is now: " << player2.getScore() << std::endl;
 					player2.setTurns(player2.getTurns() + 1);
 				}
+				else if (player2.getScore() == 0) {
+					continue;
+				}
 				else {
 					std::cout << player2.getName() << " has hit " << FinalHit << "!" << std::endl;
 					player2.setScore(player2.getScore() - FinalHit);
@@ -178,6 +187,9 @@ void GameCreation::Simulation301(Player& player1, Player& player2, int sims, int
 					std::cout << player1.getName() << "'s score is now: " << player1.getScore() << std::endl;
 					player1.setTurns(player1.getTurns() + 1);
 				}
+				else if (player1.getScore() == 0) {
+					continue;
+				}
 				else {
 					std::cout << player1.getName() << " has hit " << FinalHit << "!" << std::endl;
 					player2.setScore(player1.getScore() - FinalHit);
@@ -185,7 +197,7 @@ void GameCreation::Simulation301(Player& player1, Player& player2, int sims, int
 					player1.setTurns(player1.getTurns() + 1);
 				}
 			}
-		} while (player1.getScore() > 0 && player2.getScore() > 0);
+		} while (player1.getScore() > 0 || player2.getScore() > 0);
 		if (player1.getScore() == 0) {
 			std::cout << player1.getName() << " has won the game! They won in " << player1.getTurns() << " turns!" << std::endl;
 			player1.setWins(player1.getWins() + 1);
