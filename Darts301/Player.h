@@ -13,10 +13,13 @@ public:
 	int getTurns();
 	void setTurns(int);
 	void setWins(int);
+	void setWinRate(float);
+	float getWinRate();
 	int getWins();
 	std::string getName();
 	void setName(std::string);
 private:
+	float winrate;
 	int wins;
 	int turns;
 	int score;
