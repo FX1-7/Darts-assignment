@@ -2,10 +2,8 @@
 class Dartboard
 {
 public:
-	int getBullsHit();
-	int Throw(int);
-	int throw_bull();
-private:
-	int bullsHit;
+	int Throw301(int);
+	int Throw501(int);
+	int throwDouble501(int);
 };
 
