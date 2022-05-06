@@ -226,87 +226,112 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 		bool playerTurn;
 		int player1ThrowTemp;
 		int player2ThrowTemp;
-		player1ThrowTemp = abs(50 - (Throw.Throw501(player1.getSuccessRate())));
-		player2ThrowTemp = abs(50 - (Throw.Throw501(player2.getSuccessRate())));
+		bool doubleCheck = false;
+		player1ThrowTemp = abs(50 - (Throw.Throw501(player1.getSuccessRate(), doubleCheck)));
+		player2ThrowTemp = abs(50 - (Throw.Throw501(player2.getSuccessRate(), doubleCheck)));
+		if (player2ThrowTemp > player1ThrowTemp) {
+			playerTurn = false;
+		}
+		else {
+			playerTurn = true;
+		}
 
 		// Game loop start
 			do {
 				// Create player pointer called currentPlayer that checks the bool variable from before, if false set to reference of player2, if true a reference of player1).
 				Player* currentPlayer = (playerTurn) ? (&player1) : (&player2);
 				int threeTurns = 3;
-			// Turn loop start
+				bool roundFinished = false;
+			// Round loop start
 				do {
-					bool doubleCheck = false;
-					if (currentPlayer->getScore() > 100) {
-						int cf = rand() % 3 + 1;
-						if (cf == 1) {
-							FinalHit = Throw.throwTreble501(currentPlayer->getSuccessRate(), doubleCheck);
-							std::cout << currentPlayer->getName() << " has hit a treble score of: " << FinalHit << std::endl;
-						}
-						else if (cf == 2) {
-							FinalHit = Throw.throwDouble501(currentPlayer->getSuccessRate(), doubleCheck);
-							std::cout << currentPlayer->getName() << " has hit a double score of: " << FinalHit << std::endl;
-						}
-						else {
-							FinalHit = Throw.Throw501(currentPlayer->getSuccessRate(), doubleCheck);
-							std::cout << currentPlayer->getName() << " has hit a single score of: " << FinalHit << std::endl;
-						}
-					}
-					else {
-						bool cf = rand() % 2;
-						if (cf) {
-							FinalHit = Throw.throwDouble501(currentPlayer->getSuccessRate(), doubleCheck);
-							std::cout << currentPlayer->getName() << " has hit a double score of: " << FinalHit << std::endl;
+					int roundScore = 0;
+					// Turn loop start
+					do {
+						bool doubleCheck = false;
+						if (currentPlayer->getScore() > 100) {
+							int cf = rand() % 3 + 1;
+							if (cf == 1) {
+								FinalHit = Throw.throwTreble501(currentPlayer->getSuccessRate(), doubleCheck);
+								std::cout << currentPlayer->getName() << " has hit a treble score of: " << FinalHit << std::endl;
+							}
+							else if (cf == 2) {
+								FinalHit = Throw.throwDouble501(currentPlayer->getSuccessRate(), doubleCheck);
+								std::cout << currentPlayer->getName() << " has hit a double score of: " << FinalHit << std::endl;
+							}
+							else {
+								FinalHit = Throw.Throw501(currentPlayer->getSuccessRate(), doubleCheck);
+								std::cout << currentPlayer->getName() << " has hit a single score of: " << FinalHit << std::endl;
+							}
 						}
 						else {
-							FinalHit = Throw.Throw501(currentPlayer->getSuccessRate(), doubleCheck);
-							std::cout << currentPlayer->getName() << " has hit a single score of: " << FinalHit << std::endl;
+							bool cf = rand() % 2;
+							if (cf) {
+								FinalHit = Throw.throwDouble501(currentPlayer->getSuccessRate(), doubleCheck);
+								std::cout << currentPlayer->getName() << " has hit a double score of: " << FinalHit << std::endl;
+							}
+							else {
+								FinalHit = Throw.Throw501(currentPlayer->getSuccessRate(), doubleCheck);
+								std::cout << currentPlayer->getName() << " has hit a single score of: " << FinalHit << std::endl;
+							}
 						}
+						if (currentPlayer->getScore() == 50 && FinalHit == 50) {
+							currentPlayer->setScore(currentPlayer->getScore() - FinalHit);
+							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
+							std::cout << currentPlayer->getName() << " has hit the bullseye whilst having a remaining score of 50! They win this game!" << std::endl;
+							std::cout << currentPlayer->getName() << " has now won " << currentPlayer->getGameWins() << std::endl;
+							currentPlayer->setGameWins(currentPlayer->getGameWins() + 1);
+							roundFinished = true;
+							break;
+						}
+						else if ((currentPlayer->getScore() - FinalHit) == 0 && doubleCheck) {
+							currentPlayer->setScore(currentPlayer->getScore() - FinalHit);
+							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
+							std::cout << currentPlayer->getName() << " has won by hitting a double!" << std::endl;
+							currentPlayer->setGameWins(currentPlayer->getGameWins() + 1);
+							roundFinished = true;
+							break;
+						}
+						else if ((currentPlayer->getScore() - FinalHit) == 0 && doubleCheck == false) {
+							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
+							std::cout << currentPlayer->getName() << " has reached 0 however the last throw wasn't a double, so their score is the same as it was before their turn!" << std::endl;
+							roundFinished = true;
+							break;
+						}
+						else if ((currentPlayer->getScore() - FinalHit) < 0) {
+							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
+							std::cout << currentPlayer->getName() << " had hit " << FinalHit << " however their score is: " << currentPlayer->getScore() << " so they must hit another double to finish!" << std::endl;
+							roundFinished = true;
+							break;
+						}
+						else if ((currentPlayer->getScore() - FinalHit) == 1) {
+							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
+							std::cout << currentPlayer->getName() << " has ended up on 1 so their score will be the same as it was before their turn!" << std::endl;
+							roundFinished = true;
+							break;
+						}
+						else {
+							roundScore = roundScore + FinalHit; // Add up the round score.
+							threeTurns = threeTurns - 1; // Decrease turns by one
+						}
+					// Turn loop finish
+					} while (threeTurns > 0);
+					if (roundScore != 0) {
+						currentPlayer->setScore(currentPlayer->getScore() - roundScore); // remove the rounds score from player score as it has passed checks above to ensure it is a valid score.
+						playerTurn = !playerTurn; // Set to the opposite player
+						threeTurns = 3; // Set turns back to 3
 					}
-					if (currentPlayer->getScore() == 50 && FinalHit == 50) {
-						currentPlayer->setScore(currentPlayer->getScore() - FinalHit);
-						currentPlayer->setTurns(currentPlayer->getTurns() + 1);
-						std::cout << currentPlayer->getName() << " has hit the bullseye whilst having a remaining score of 50! They win this game!" << std::endl;
-						std::cout << currentPlayer->getName() << " has now won " << currentPlayer->getGameWins() << std::endl;
-						currentPlayer->setGameWins(currentPlayer->getGameWins() + 1);
-					}
-					else if ((currentPlayer->getScore() - FinalHit) == 0 && doubleCheck) {
-						currentPlayer->setScore(currentPlayer->getScore() - FinalHit);
-						currentPlayer->setTurns(currentPlayer->getTurns() + 1);
-						std::cout << currentPlayer->getName() << " has won by hitting a double!" << std::endl;
-						currentPlayer->setGameWins(currentPlayer->getGameWins() + 1);
-					}
-					else if ((currentPlayer->getScore() - FinalHit) == 0 && doubleCheck == false) {
-						currentPlayer->setTurns(currentPlayer->getTurns() + 1);
-						std::cout << currentPlayer->getName() << " has reached 0 however the last throw wasn't a double, so their score is the same as it was before their turn!" << std::endl;
-					}
-					else if ((currentPlayer->getScore() - FinalHit) < 0) {
-						currentPlayer->setTurns(currentPlayer->getTurns() + 1);
-						std::cout << currentPlayer->getName() << " had hit " << FinalHit << " however their score is: " << currentPlayer->getScore() << " so they must hit another double to finish!" << std::endl;
-					}
-					else if ((currentPlayer->getScore() - FinalHit) == 1) {
-						currentPlayer->setTurns(currentPlayer->getTurns() + 1);
-						std::cout << currentPlayer->getName() << " has ended up on 1 so their score will be the same as it was before their turn!" << std::endl;
-					}
-					// Player who goes first throws 3 times.
-						// if the score is if score is 50 then game can finish on 50, if not then they must finish on a double.
-						// If a players score ends up below 2 (0 is fine as it's the end goal) then they have their score reset to what it was before that set to try again.
-						// if score is 0 check if double was hit, pass in bool var by reference to throw - if this variable is yes then bool was hit and set of darts has been won.
-				} while (threeTurns > 0);
-			// Turn loop finish
-			// Turn loop start
-				// Second player throws 3 times.
-					// if the score is if score is 50 then game can finish on 50, if not then they must finish on a double.
-					// If a players score ends up below 2 (0 is fine as it's the end goal) then they have their score reset to what it was before that set of darts to try again.
-					// if score is 0 check if double was hit, pass in bool var by reference to throw - if this variable is yes then bool was hit and set has been won.
-			// Turn loop finish
-		// Game loop finish
+				// Round loop finish
+				} while (roundFinished == false);
+				// Set score to 501
+				player1.setScore(501);
+				player2.setScore(501);
+				std::cout << "Game finished!" << std::endl;
+			// Game loop finish
 			} while (player1.getGameWins() != 3 && player2.getGameWins() != 3);
-
-		// Set score to 501
+			std::cout << "Set finished!" << std::endl;
+		// Set loop finish
 		} while (player1.getSetWins() != 7 && player2.getSetWins() != 7);
-	// Set loop finish
-	// sim = sim - 1
+		// sim = sim - 1
 		sims = sims - 1;
 	} while (sims > 0);
 	// Match loop end

@@ -22,7 +22,7 @@ int main() {
 	std::cout << "What game will " << player1.getName() << "and " << player2.getName() << " be playing?" << std::endl;
 	std::cout << "1. Darts 301" << std::endl << "2. Darts 501" << std::endl;
 	std::cin >> GameChoice;
-	while (GameChoice != 1 && GameChoice != 2); {
+	while (GameChoice != 1 && GameChoice != 2) {
 		std::cout << "Please enter a value of 1 or 2." << std::endl;
 		std::cin >> GameChoice;
 	}
@@ -32,7 +32,7 @@ int main() {
 		std::cin >> sims;
 		std::cout << "Please enter who is going first." << std::endl << "1. Player 1" << std::endl << "2. Player 2" << std::endl;
 		std::cin >> PlayerChoice301;
-		while (PlayerChoice301 != 1 && PlayerChoice301 != 2); {
+		while (PlayerChoice301 != 1 && PlayerChoice301 != 2) {
 			std::cout << "Please enter a value of 1 or 2." << std::endl;
 			std::cin >> PlayerChoice301;
 		}
