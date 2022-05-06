@@ -16,17 +16,32 @@ int main() {
 	Player player2;
 	GameCreation Game;
 	int sims;
-	int TempMenuVar;
+	int PlayerChoice301;
+	int GameChoice;
 	Game.CreateGame(player1, player2);
-	std::cout << "Please enter how many games you'd like to simulate" << std::endl;
-	std::cin >> sims;
-	std::cout << "Please enter who is going first." << std::endl << "1. Player 1" << std::endl << "2. Player 2" << std::endl;
-	std::cin >> TempMenuVar;
-	do {
-		if (TempMenuVar != 1 && TempMenuVar != 2) {
+	std::cout << "What game will " << player1.getName() << "and " << player2.getName() << " be playing?" << std::endl;
+	std::cout << "1. Darts 301" << std::endl << "2. Darts 501" << std::endl;
+	std::cin >> GameChoice;
+	while (GameChoice != 1 && GameChoice != 2); {
+		std::cout << "Please enter a value of 1 or 2." << std::endl;
+		std::cin >> GameChoice;
+	}
+	if (GameChoice == 1) {
+		std::cout << std::endl << "Darts 301 Selected!" << std::endl;
+		std::cout << "Please enter how many games you'd like to simulate" << std::endl;
+		std::cin >> sims;
+		std::cout << "Please enter who is going first." << std::endl << "1. Player 1" << std::endl << "2. Player 2" << std::endl;
+		std::cin >> PlayerChoice301;
+		while (PlayerChoice301 != 1 && PlayerChoice301 != 2); {
 			std::cout << "Please enter a value of 1 or 2." << std::endl;
-			std::cin >> TempMenuVar;
+			std::cin >> PlayerChoice301;
 		}
-	} while (TempMenuVar != 1 && TempMenuVar != 2);
-	Game.Simulation301(player1, player2, sims, TempMenuVar);
+		Game.Simulation301(player1, player2, sims, PlayerChoice301);
+	}
+	else if (GameChoice == 2) {
+		std::cout << std::endl << "Darts 501 Selected!" << std::endl;
+		std::cout << "Please enter how many games you'd like to simulate" << std::endl;
+		std::cin >> sims;
+		Game.Simulation501(player1, player2, sims);
+	}
 }

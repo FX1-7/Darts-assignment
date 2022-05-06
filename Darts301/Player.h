@@ -14,12 +14,21 @@ public:
 	void setTurns(int);
 	void setWins(int);
 	void setWinRate(float);
+	void setSetWins(int);
+	void setGameWins(int);
+	void setMatchWins(int);
+	int getSetWins();
+	int getGameWins();
+	int getMatchWins();
 	float getWinRate();
 	int getWins();
 	std::string getName();
 	void setName(std::string);
 private:
 	float winrate;
+	int setsWon;
+	int gamesWon;
+	int matchesWon;
 	int wins;
 	int turns;
 	int score;

@@ -7,6 +7,11 @@ Player::Player() {
 	turns = 0;
 	wins = 0;
 	winrate = 0;
+
+	// These variables are only for 501.
+	setsWon = 0;
+	gamesWon = 0;
+	matchesWon = 0;
 }
 
 int Player::getScore() {
@@ -53,6 +58,30 @@ void Player::setWinRate(float tWinRate) {
 }
 float Player::getWinRate() {
 	return winrate;
+}
+
+void Player::setGameWins(int tGameWins) {
+	gamesWon = tGameWins;
+}
+
+void Player::setMatchWins(int tMatchWins) {
+	matchesWon = tMatchWins;
+}
+
+void Player::setSetWins(int tSetWins) {
+	setsWon = tSetWins;
+}
+
+int Player::getGameWins() {
+	return gamesWon;
+}
+
+int Player::getMatchWins() {
+	return matchesWon;
+}
+
+int Player::getSetWins() {
+	return setsWon;
 }
 
 Player::~Player() {
