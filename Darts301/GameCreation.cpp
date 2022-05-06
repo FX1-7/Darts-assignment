@@ -315,10 +315,10 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 						}
 					// Turn loop finish
 					} while (threeTurns > 0);
+					playerTurn = !playerTurn; // Set to the opposite player
+					threeTurns = 3; // Set turns back to 3
 					if (roundScore != 0) {
 						currentPlayer->setScore(currentPlayer->getScore() - roundScore); // remove the rounds score from player score as it has passed checks above to ensure it is a valid score.
-						playerTurn = !playerTurn; // Set to the opposite player
-						threeTurns = 3; // Set turns back to 3
 					}
 				// Round loop finish
 				} while (roundFinished == false);
