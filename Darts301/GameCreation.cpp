@@ -238,15 +238,15 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 
 		// Game loop start
 			do {
-				// Create player pointer called currentPlayer that checks the bool variable from before, if false set to reference of player2, if true a reference of player1).
-				Player* currentPlayer = (playerTurn) ? (&player1) : (&player2);
-				int threeTurns = 3;
 				bool roundFinished = false;
-			// Round loop start
+				// Round loop start
 				do {
+					// Create player pointer called currentPlayer that checks the bool variable from before, if false set to reference of player2, if true a reference of player1).
+					Player* currentPlayer = (playerTurn) ? (&player1) : (&player2);
 					int roundScore = 0;
 					// Turn loop start
-					do {
+					for (int i = 0; i < 3; i++) {
+						int turnScore = 0;
 						bool doubleCheck = false;
 						if (currentPlayer->getScore() > 100) {
 							int cf = rand() % 3 + 1;
@@ -294,32 +294,25 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 						else if ((currentPlayer->getScore() - FinalHit) == 0 && doubleCheck == false) {
 							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
 							std::cout << currentPlayer->getName() << " has reached 0 however the last throw wasn't a double, so their score is the same as it was before their turn!" << std::endl;
-							roundFinished = true;
 							break;
 						}
 						else if ((currentPlayer->getScore() - FinalHit) < 0) {
 							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
 							std::cout << currentPlayer->getName() << " had hit " << FinalHit << " however their score is: " << currentPlayer->getScore() << " so they must hit another double to finish!" << std::endl;
-							roundFinished = true;
 							break;
 						}
 						else if ((currentPlayer->getScore() - FinalHit) == 1) {
 							currentPlayer->setTurns(currentPlayer->getTurns() + 1);
 							std::cout << currentPlayer->getName() << " has ended up on 1 so their score will be the same as it was before their turn!" << std::endl;
-							roundFinished = true;
 							break;
 						}
 						else {
-							roundScore = roundScore + FinalHit; // Add up the round score.
-							threeTurns = threeTurns - 1; // Decrease turns by one
+							roundScore = turnScore + FinalHit; // Add up the round score.
 						}
-					// Turn loop finish
-					} while (threeTurns > 0);
-					playerTurn = !playerTurn; // Set to the opposite player
-					threeTurns = 3; // Set turns back to 3
-					if (roundScore != 0) {
-						currentPlayer->setScore(currentPlayer->getScore() - roundScore); // remove the rounds score from player score as it has passed checks above to ensure it is a valid score.
 					}
+					// Turn loop finish
+					currentPlayer->setScore(currentPlayer->getScore() - roundScore); // remove the rounds score from player score as it has passed checks above to ensure it is a valid score.
+					playerTurn = !playerTurn; // Set to the opposite player
 				// Round loop finish
 				} while (roundFinished == false);
 				// Set score to 501
@@ -329,9 +322,20 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 			// Game loop finish
 			} while (player1.getGameWins() != 3 && player2.getGameWins() != 3);
 			std::cout << "Set finished!" << std::endl;
+			if (player1.getGameWins() > player2.getGameWins()) {
+				player1.setSetWins(player1.getSetWins() + 1);
+			}
+			else {
+				player2.setSetWins(player2.getSetWins() + 1);
+			}
+			player1.setGameWins(0);
+			player2.setGameWins(0);
 		// Set loop finish
 		} while (player1.getSetWins() != 7 && player2.getSetWins() != 7);
 		// sim = sim - 1
+		// 
+		// Put stats here. 
+		//
 		sims = sims - 1;
 	} while (sims > 0);
 	// Match loop end
