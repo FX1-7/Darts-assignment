@@ -324,19 +324,36 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 			std::cout << "Set finished!" << std::endl;
 			if (player1.getGameWins() > player2.getGameWins()) {
 				player1.setSetWins(player1.getSetWins() + 1);
+
 			}
 			else {
 				player2.setSetWins(player2.getSetWins() + 1);
 			}
-			player1.setGameWins(0);
-			player2.setGameWins(0);
 		// Set loop finish
 		} while (player1.getSetWins() != 7 && player2.getSetWins() != 7);
+		if (player1.getSetWins() > player2.getSetWins()) {
+			player1.setMatchWins(player1.getMatchWins() + 1);
+		}
+		else {
+			player2.setMatchWins(player2.getMatchWins() + 1);
+		}
 		// sim = sim - 1
 		// 
 		// Put stats here. 
-		//
+		float GamesPlayed = player1.getGameWins() + player2.getGameWins();
+		float SetsPlayed = player1.getSetWins() + player2.getSetWins();
+		float MatchesPlayed = player1.getMatchWins() + player2.getMatchWins();
+		std::cout << player1.getName() << " has won: " << player1.getGameWins() << " games, " << player1.getSetWins() << " sets and " << player1.getMatchWins() << " matches." << std::endl;
+		std::cout << "This means " << player1.getName() << " has a game winrate of: " << (player1.getGameWins() / GamesPlayed) << ". And a set winrate of: "
+			<< (player1.getSetWins() / SetsPlayed) << ". And a match winrate of: " << (player1.getMatchWins() / MatchesPlayed) << std::endl;
+		std::cout << player2.getName() << " has won: " << player2.getGameWins() << " games, " << player2.getSetWins() << " sets and " << player2.getMatchWins() << " matches." << std::endl;
+		std::cout << "This means " << player2.getName() << " has a game winrate of: " << (player2.getGameWins() / GamesPlayed) << ". And a set winrate of: "
+			<< (player2.getSetWins() / SetsPlayed) << ". And a match winrate of: " << (player2.getMatchWins() / MatchesPlayed) << std::endl;
 		sims = sims - 1;
 	} while (sims > 0);
+	player1.setGameWins(0);
+	player2.setGameWins(0);
+	player1.setMatchWins(0);
+	player2.setMatchWins(0);
 	// Match loop end
 }
