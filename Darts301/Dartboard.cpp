@@ -15,12 +15,12 @@ int Dartboard::Throw301(int p) {
 		return aim;
 	}
 	else if (r <= p + p * .2f) {
-		return 50;
+		return bd[0][aim];
 	}
 	else if (r <= p + p * .3f)
-		return bd[0][aim];
-	else if (r <= p + p * .4f) {
 		return bd[1][aim];
+	else if (r <= p + p * .4f) {
+		return 50;
 	}
 	else {
 		return 0;
@@ -40,12 +40,13 @@ int Dartboard::manualThrow301(int p, int aim) {
 		return aim;
 	}
 	else if (r <= p + p * .2f) {
-		return 50;
-	}
-	else if (r <= p + p * .3f)
 		return bd[0][aim];
-	else if (r <= p + p * .4f) {
+	}
+	else if (r <= p + p * .3f) {
 		return bd[1][aim];
+	}
+	else if (r <= p + p * .4f) {
+		return 50;
 	}
 	else {
 		return 0;

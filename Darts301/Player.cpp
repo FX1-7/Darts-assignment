@@ -7,6 +7,7 @@ Player::Player() {
 	turns = 0;
 	wins = 0;
 	winrate = 0;
+	SuccessRate = 0;
 
 	// These variables are only for 501.
 	setsWon = 0;

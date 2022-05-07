@@ -547,8 +547,12 @@ void GameCreation::Manual301(Player& player1, Player& player2, int sims, int cho
 				if (player1.getScore() != 0) {
 					std::cout << "It is " << player1.getName() << "'s turn to throw!" << std::endl;
 				}
-				std::cout << "What does " << player1.getName() << " want to aim at?" << std::endl;
+				std::cout << "What does " << player1.getName() << " want to aim at? A value between 1 and 20, or alternatively a 50 to aim at the bullseye." << std::endl;
 				std::cin >> aim;
+				while (aim != 50 && (aim > 20 || aim < 1)) {
+					std::cout << "Please enter a value between 1 and 20, or alternatively enter 50 in order to aim for the bullseye." << std::endl;
+					std::cin >> aim;
+				}
 				FinalHit = Throws.manualThrow301(player1.getSuccessRate(), aim);
 				if (player1.getScore() == 50 && player1.getScore() != 0) {
 					if (FinalHit != 50 && FinalHit != 0) {
@@ -589,8 +593,12 @@ void GameCreation::Manual301(Player& player1, Player& player2, int sims, int cho
 				if (player2.getScore() != 0) {
 					std::cout << "It is " << player2.getName() << "'s turn to throw!" << std::endl;
 				}
-				std::cout << "What does " << player2.getName() << " want to aim at?" << std::endl;
+				std::cout << "What does " << player2.getName() << " want to aim at? A value between 1 and 20, or alternatively a 50 to aim at the bullseye." << std::endl;
 				std::cin >> aim;
+				while (aim != 50 && (aim > 20 || aim < 1)) {
+					std::cout << "Please enter a value between 1 and 20, or alternatively enter 50 in order to aim for the bullseye." << std::endl;
+					std::cin >> aim;
+				}
 				FinalHit = Throws.manualThrow301(player2.getSuccessRate(), aim);
 				if (player2.getScore() == 50 && player2.getScore() != 0) {
 					if (FinalHit != 50 && FinalHit != 0) {
@@ -632,8 +640,12 @@ void GameCreation::Manual301(Player& player1, Player& player2, int sims, int cho
 				if (player2.getScore() != 0) {
 					std::cout << "It is " << player2.getName() << "'s turn to throw!" << std::endl;
 				}
-				std::cout << "What does " << player2.getName() << " want to aim at?" << std::endl;
+				std::cout << "What does " << player2.getName() << " want to aim at? A value between 1 and 20, or alternatively a 50 to aim at the bullseye." << std::endl;
 				std::cin >> aim;
+				while (aim != 50 && (aim > 20 || aim < 1)) {
+					std::cout << "Please enter a value between 1 and 20, or alternatively enter 50 in order to aim for the bullseye." << std::endl;
+					std::cin >> aim;
+				}
 				FinalHit = Throws.manualThrow301(player2.getSuccessRate(), aim);
 				if (player2.getScore() == 50 && player2.getScore() != 0) {
 					if (FinalHit != 50) {
@@ -674,8 +686,12 @@ void GameCreation::Manual301(Player& player1, Player& player2, int sims, int cho
 				if (player1.getScore() != 0) {
 					std::cout << "It is " << player1.getName() << "'s turn to throw!" << std::endl;
 				}
-				std::cout << "What does " << player1.getName() << " want to aim at?" << std::endl;
+				std::cout << "What does " << player1.getName() << " want to aim at? A value between 1 and 20, or alternatively a 50 to aim at the bullseye." << std::endl;
 				std::cin >> aim;
+				while (aim != 50 && (aim > 20 || aim < 1)) {
+					std::cout << "Please enter a value between 1 and 20, or alternatively enter 50 in order to aim for the bullseye." << std::endl;
+					std::cin >> aim;
+				}
 				FinalHit = Throws.manualThrow301(player1.getSuccessRate(), aim);
 				if (player1.getScore() == 50 && player1.getScore() != 0) {
 					if (FinalHit != 50 && FinalHit != 0) {
