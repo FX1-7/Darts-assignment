@@ -20,7 +20,7 @@ int main() {
 	int GameChoice;
 	int SimOrManual;
 	Game.CreateGame(player1, player2);
-	std::cout << "What game will " << player1.getName() << "and " << player2.getName() << " be playing?" << std::endl;
+	std::cout << "What game will " << player1.getName() << " and " << player2.getName() << " be playing?" << std::endl;
 	std::cout << "1. Darts 301" << std::endl << "2. Darts 501" << std::endl;
 	std::cin >> GameChoice;
 	while (GameChoice != 1 && GameChoice != 2) {

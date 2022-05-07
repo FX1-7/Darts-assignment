@@ -39,13 +39,13 @@ int Dartboard::manualThrow301(int p, int aim) {
 	if (r <= p) {
 		return aim;
 	}
-	else if (r <= p + p * .2f) {
+	else if (r <= p + p * .2f && aim != 50) {
 		return bd[0][aim];
 	}
-	else if (r <= p + p * .3f) {
+	else if (r <= p + p * .3f && aim != 50) {
 		return bd[1][aim];
 	}
-	else if (r <= p + p * .4f) {
+	else if (r <= p + p * .4f && aim != 50) {
 		return 50;
 	}
 	else {

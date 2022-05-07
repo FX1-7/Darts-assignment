@@ -724,7 +724,7 @@ void GameCreation::Manual301(Player& player1, Player& player2, int sims, int cho
 				}
 				else if (player1.getScore() != 0) {
 					std::cout << player1.getName() << " has hit " << FinalHit << "!" << std::endl;
-					player2.setScore(player1.getScore() - FinalHit);
+					player1.setScore(player1.getScore() - FinalHit);
 					std::cout << player1.getName() << "'s score is now: " << player1.getScore() << std::endl;
 					player1.setTurns(player1.getTurns() + 1);
 				}
