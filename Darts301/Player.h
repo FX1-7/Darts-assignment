@@ -26,6 +26,7 @@ public:
 	void setName(std::string);
 private:
 	float winrate;
+	// setsWon, gamesWon and matchesWon are 501 specific variables.
 	int setsWon;
 	int gamesWon;
 	int matchesWon;

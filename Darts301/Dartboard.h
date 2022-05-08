@@ -2,6 +2,7 @@
 class Dartboard
 {
 public:
+	// Dart throwing functionsS
 	int Throw301(int);
 	int manualThrow301(int, int);
 	int manualThrow501(int, int, bool&);
