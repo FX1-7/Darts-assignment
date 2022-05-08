@@ -155,7 +155,7 @@ int Dartboard::throwDouble501(int p, bool &doubleCheck) {
 	}
 }
 
-int Dartboard::throwTreble501(int p, bool &doubleCheck) {
+int Dartboard::throwTreble501(int p) {
 	// This function has been taken from the sample darts functions we were provided with on MLS: https://mylearningspace.abertay.ac.uk/d2l/le/content/22672/viewContent/399708/View
 	// Return result of throwing for treble score with accuracy passed in by player success rate
 	// Double check is also passed in as 501 requires games to end on a double.
@@ -239,7 +239,7 @@ int Dartboard::manualThrow501(int p, int aim, bool& doubleCheck) {
 	}
 }
 
-int Dartboard::manualThrowTreble501(int p, int aim, bool& doubleCheck) {
+int Dartboard::manualThrowTreble501(int p, int aim) {
 	// This function has been taken from the sample darts functions we were provided with on MLS: https://mylearningspace.abertay.ac.uk/d2l/le/content/22672/viewContent/399708/View
 	// Return result of throwing for treble score with accuracy passed in by player success rate
 	// Double check is also passed in as 501 requires games to end on a double.

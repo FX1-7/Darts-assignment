@@ -330,7 +330,7 @@ void GameCreation::Simulation501(Player& player1, Player& player2, int sims) {
 							int cf = rand() % 3 + 1;
 							if (cf == 1) {
 								// Throw for a teble
-								FinalHit = Throw.throwTreble501(currentPlayer->getSuccessRate(), doubleCheck);
+								FinalHit = Throw.throwTreble501(currentPlayer->getSuccessRate());
 								// output the score they have hit
 								std::cout << currentPlayer->getName() << " has aimed for a treble score and hit: " << FinalHit << std::endl;
 							}
@@ -595,7 +595,7 @@ void GameCreation::Manual501(Player& player1, Player& player2, int sims) {
 							// if they chose a teble	
 							else if (choice == 3) {
 								// Throw for a treble
-								FinalHit = Throw.manualThrowTreble501(currentPlayer->getSuccessRate(), aim, doubleCheck);
+								FinalHit = Throw.manualThrowTreble501(currentPlayer->getSuccessRate(), aim);
 								// output the points they hit.
 								std::cout << currentPlayer->getName() << " has hit " << FinalHit << " points" << std::endl;
 							}
@@ -722,7 +722,7 @@ void GameCreation::Manual301(Player& player1, Player& player2, int sims, int cho
 		do {
 			// If player 1 is going first
 			if (choice == 1) {
-				// If player 1's score is not 0 announce it is there turn to throw.
+				// If player 1's score is not 0 announce it is their turn to throw.
 				if (player1.getScore() != 0) {
 					std::cout << "It is " << player1.getName() << "'s turn to throw!" << std::endl;
 				}
