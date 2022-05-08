@@ -486,7 +486,6 @@ void GameCreation::Manual501(Player& player1, Player& player2, int sims) {
 			int player1TempScore;
 			int player2TempScore;
 			bool doubleCheck = false;
-			int aim;
 			// Both players throw once and see who gets closest to 50, that player goes first. (bool var, true = player1, false = player2).
 			std::cout << "================================================" << std::endl;
 			std::cout << "Both players will try to hit a bullseye, closest goes first!" << std::endl;
